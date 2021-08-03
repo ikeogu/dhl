@@ -27,29 +27,14 @@
 
                               <div class="pl-lg-4 row">
                                  @if($item->image)
-                                <div class="col-4">
+                                <div class="col-6">
                                     <img class="" alt="User Image"
-                                        src="{{ asset('storage/Item/' . $item->image) }}"
+                                        src="{{ asset('storage/Item/Cover' . $item->image) }}"
                                         height="70" width="70"
                                         ></a>
                                 </div>
                                 @endif
-                                 @if($item->image2)
-                                <div class="col-4">
-                                    <img class="" alt="User Image"
-                                        src="{{ asset('storage/Item/' . $item->image2) }}"
-                                        height="70" width="70"
-                                        ></a>
-                                </div>
-                                @endif
-                                @if($item->image3)
-                                <div class="col-4">
-                                    <img class="" alt="User Image"
-                                        src="{{ asset('storage/Item/' . $item->image3) }}"
-                                        height="70" width="70"
-                                        ></a>
-                                </div>
-                                @endif
+
 
                             </div>
                             <div class="pl-lg-4 row pt-3">
@@ -193,6 +178,22 @@
                             </div>
 
                         </div>
+                        <hr class="my-4" />
+                            <div class="row">
+                                @foreach ($item->otherPhotos as $pic)
+                                    @if (!empty($pic->image))
+                                     <div class="col-4">
+                                            <a href="{{ asset('storage/Item/OtherPhotos/' . $pic->image) }}"
+                                        rel="prettyPhoto[{{ $property->title }}]" title="Other pictures."><img
+                                            src="{{ asset('storage/Item/OtherPhotos/' . $pic->image) }}"
+                                            style="width: 100%; height: 150px;"></a>
+
+                                     </div>
+                                    @endif
+                                @endforeach
+
+                            </div>
+
                     </div>
                 </div>
             </div>

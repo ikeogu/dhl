@@ -93,13 +93,13 @@
                                         <td>{{ $item->TrackID }}</td>
                                         <td>
                                             <img class="rounded-circle" alt="Item Image"
-                                                src="{{ asset('storage/Item/'.$item->image) }}"
+                                                src="{{ asset('storage/Item/Cover'.$item->image) }}"
                                                 height="50" width="50"
                                                 style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                         </td>
                                         <td>{{ $item->item_name }}</td>
                                         <td>{{ $item->r_name }}</td>
-                                    
+
                                          <td>{{ $item->c_location }}</td>
                                          @if ($item->status == 1)
                                             <td>  <a class="btn btn-sm btn-default text-white">on Queque</a></td>
@@ -126,7 +126,7 @@
                             </tbody>
                         </table>
                     </div>
-                       
+
                     </div>
                 </div>
             </div>

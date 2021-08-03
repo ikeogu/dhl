@@ -2,7 +2,7 @@
 
 @section('content')
     @include('users.partials.header', [
-    'title' => __('Hello') . ' '. $user->name,
+    'title' => __('Hello') . ' '. $user->firstname,
     'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your
     projects or assigned tasks'),
     'class' => 'col-lg-7'
@@ -48,7 +48,7 @@
                         </div>
                         <div class="text-center">
                             <h3>
-                                {{ $user->name }}<span class="font-weight-light">, </span>
+                                {{ $user->firstname }}<span class="font-weight-light">, </span>
                             </h3>
                             {{-- <div class="h5 font-weight-300">
                                 <i class="ni location_pin mr-2"></i>{{ __('Bucharest, Romania') }}
@@ -91,16 +91,29 @@
 
 
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                    <input type="text" name="name" id="input-name"
-                                        class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Name') }}"
-                                        value="{{ old('name', $user->name) }}" required autofocus>
+                                <div class="form-group{{ $errors->has('firstname') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('First Name') }}</label>
+                                    <input type="text" name="firstname" id="input-name"
+                                        class="form-control form-control-alternative{{ $errors->has('firstname') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('First Name') }}"
+                                        value="{{ old('firstname', $user->firstname) }}" required autofocus>
 
-                                    @if ($errors->has('name'))
+                                    @if ($errors->has('firstname'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
+                                            <strong>{{ $errors->first('firstname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group{{ $errors->has('lastname') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-name">{{ __('Last Name') }}</label>
+                                    <input type="text" name="lastname" id="input-name"
+                                        class="form-control form-control-alternative{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('Last Name') }}"
+                                        value="{{ old('lastname', $user->lastname) }}" required autofocus>
+
+                                    @if ($errors->has('firstname'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('firstname') }}</strong>
                                         </span>
                                     @endif
                                 </div>

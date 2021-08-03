@@ -24,20 +24,22 @@ class AdminController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->status = 2;
         $pwd = \Str::random(8);
         $user->password = Hash::make($pwd);
         $user->role = $request->role;
         if ($user->save()) {
             $data = [
-                'email' => $request->email,
+                'email' => $user->email,
                 'subject' => "Account has been created.",
 
                 'url' => URL::signedRoute('login'),
                 'name' => $user->name,
                 'password' => $pwd
             ];
-
-            Mail::to($request->email)->send(new NewSignIn($data));
+            $email = str_replace("\xE2\x80\x8B", "", $request->email);
+            Mail::to($email)->send(new NewSignIn($data));
         }
     }
     public function listAdmins()
@@ -57,13 +59,13 @@ class AdminController extends Controller
         $u = User::findOrFail($id);
         $u->status = 0;
         $u->save();
-        return back()->with('success', 'Admin deleted.');
+        return back()->with('success', 'Admin suspend.');
     }
     public function unsuspendAdmin($id)
     {
         $u = User::findOrFail($id);
         $u->status = 1;
         $u->save();
-        return back()->with('success', 'Admin deleted.');
+        return back()->with('success', 'Admin Activated.');
     }
 }

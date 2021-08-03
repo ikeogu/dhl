@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDispatchersTable extends Migration
+class CreateItemPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateDispatchersTable extends Migration
      */
     public function up()
     {
-        Schema::create('dispatchers', function (Blueprint $table) {
+        Schema::create('item_photos', function (Blueprint $table) {
             $table->id();
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('email');
-            $table->string('phone');
+            $table->integer('item_id');
             $table->string('image');
-            $table->integer('status');
 
             $table->timestamps();
         });
@@ -33,6 +29,6 @@ class CreateDispatchersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dispatchers');
+        Schema::dropIfExists('item_photos');
     }
 }

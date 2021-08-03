@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dispatcher extends Model
+class ItemPhoto extends Model
 {
     use HasFactory;
-    protected $fillable = ['firstname','lastname','email','image','status'];
 
-    public function items(){
+    //
+    public function item()
+    {
         return $this->belongsTo(Item::class);
     }
 }

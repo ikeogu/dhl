@@ -50,7 +50,7 @@
                                         <form method="post" action="{{ route('createAdmin') }}">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <input type="text" placeholder="Staff Name"
                                                             class="form-control form-control-alternative" name="name" />
@@ -60,7 +60,7 @@
 
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <input type="email" class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1" placeholder="name@example.com"
@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <input type="tel" placeholder="Staff Phone"
                                                             class="form-control form-control-alternative" name="phone" />
@@ -78,7 +78,7 @@
 
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-8">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                        <select  class="form-control form-control-alternative" name="role" >
                                                            <option value="1">Super Admin</option>

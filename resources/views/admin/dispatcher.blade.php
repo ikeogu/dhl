@@ -144,18 +144,27 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="text" placeholder="Staff Name"
-                                                            class="form-control form-control-alternative" name="name" />
+                                                        <input type="text" placeholder="First Name"
+                                                            class="form-control form-control-alternative" name="firstname" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Last Name"
+                                                            class="form-control form-control-alternative" name="lastname" />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-9">
                                                     <div class="form-group">
                                                         <input type="email" class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1" placeholder="name@example.com"
                                                             name="email">
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="row">
                                                  <div class="col-md-6">
@@ -197,7 +206,8 @@
                             <thead class="thead-light">
                                 <tr>
                                      <th scope="col">Picture</th>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">First Name</th>
+                                     <th scope="col">Last Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone</th>
                                      <th scope="col">Status</th>
@@ -215,7 +225,8 @@
                                                                     height="50" width="50"
                                                                     style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                          </td>
-                                        <td> <a href="{{route('dispatched',[$item->id])}}">{{ $item->name }} </a></td>
+                                        <td> <a href="{{route('dispatched',[$item->id])}}">{{ $item->firstname }} </a></td>
+                                        <td> <a href="{{route('dispatched',[$item->id])}}">{{ $item->lastname }} </a></td>
                                         <td>
                                             <a href="mailto:{{ $item->email }}">{{ $item->email }}</a>
                                         </td>
@@ -273,10 +284,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" value="{{$item->name}}"                                                                                        class="form-control form-control-alternative" name="name" />
+                                        <input type="text" value="{{$item->firstname}}"                                                                                        class="form-control form-control-alternative" name="firstname" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" value="{{$item->lastname}}"                                                                                        class="form-control form-control-alternative" name="lastname" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input type="email" class="form-control form-control-alternative"
                                             id="exampleFormControlInput1"
@@ -285,7 +305,6 @@
                                             >
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

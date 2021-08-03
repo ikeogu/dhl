@@ -9,6 +9,7 @@ use App\Mail\ItemOnTransit;
 use App\Models\Dispatcher;
 use App\Models\DispatcherItem;
 use App\Models\Item;
+use App\Models\ItemPhoto;
 use Illuminate\Http\Request;
 use App\Models\SanitizeInput;
 use Illuminate\Support\Facades\Mail;
@@ -44,7 +45,7 @@ class ItemController extends Controller
             'r_name' => 'required',
 
         ]);
-        $cover = $cover2 = $cover3 = '';
+
         $item = new Item();
         $item->item_name = $this->sanitize->SanitizeInput($request->item_name);
         $item->item_weight = $this->sanitize->SanitizeInput($request->item_weight);
@@ -61,37 +62,35 @@ class ItemController extends Controller
         $item->r_email = $this->sanitize->SanitizeInput($request->r_email);
         $item->c_location = $this->sanitize->SanitizeInput($request->c_location);
         $item->status = 1;
-
+        
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
+            $request->file('image')->storeAs('public/Item/cover', $fileName);
             $cover = $fileName;
         }
-
-        if ($request->hasFile('image2')) {
-            $file = $request->file('image2');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
-            $cover2 = $fileName;
-        }
-
-        if ($request->hasFile('image3')) {
-            $file = $request->file('image3');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
-            $cover3 = $fileName;
-        }
         $item->image = $cover;
-        $item->image2 = $cover2;
-        $item->image3 = $cover3;
-        $id = Item::latest()->first();
-        if ($id) {
-            $item->TrackID = 'DT-00' . $id->id + 1;
-        } else {
-            $item->TrackID = 'DT-00' . 1;
-        }
 
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $photo) {
+
+
+                $photoFullname = $photo->getClientOriginalName();
+                $photoExt = $photo->getClientOriginalExtension();
+                $photonameonly = pathinfo(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '_', $photoFullname)), PATHINFO_FILENAME);
+                // $photonameonly = pathinfo($photoFullname, PATHINFO_FILENAME);
+                $photoToDb = $photonameonly . '_' . time() . '.' . $photoExt;
+                $path = $photo->storeAs('public/Item/OtherPhoto', $photoToDb);
+
+                $otherPhoto = new ItemPhoto();
+
+                $otherPhoto->image = $photoToDb;
+                $otherPhoto->item_id = $item->id;
+
+                $otherPhoto->save();
+            }
+        }
+        $item->TrackID = 'DT-00' . $item->id;
 
         if($item->save()){
             $data = [
@@ -99,7 +98,7 @@ class ItemController extends Controller
                 'subject' => "You Item is On Queue.",
                 'name' => $request->r_name,
                 'item' => $item,
-                
+
             ];
 
             Mail::to($request->r_email)->send(new ItemOnQueue($data));
@@ -130,26 +129,31 @@ class ItemController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
+            $request->file('image')->storeAs('public/Item/cover', $fileName);
             $cover = $fileName;
-            $item->image = $cover;
+        }
+        $item->image = $cover;
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $photo) {
+
+
+                $photoFullname = $photo->getClientOriginalName();
+                $photoExt = $photo->getClientOriginalExtension();
+                $photonameonly = pathinfo(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '_', $photoFullname)), PATHINFO_FILENAME);
+                // $photonameonly = pathinfo($photoFullname, PATHINFO_FILENAME);
+                $photoToDb = $photonameonly . '_' . time() . '.' . $photoExt;
+                $path = $photo->storeAs('public/Item/OtherPhoto', $photoToDb);
+
+                $otherPhoto = new ItemPhoto();
+
+                $otherPhoto->image = $photoToDb;
+                $otherPhoto->item_id = $item->id;
+
+                $otherPhoto->save();
+            }
         }
 
-        if ($request->hasFile('image2')) {
-            $file = $request->file('image2');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
-            $cover = $fileName;
-            $item->image2 = $cover;
-        }
-
-        if ($request->hasFile('image3')) {
-            $file = $request->file('image3');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Item', $fileName);
-            $cover = $fileName;
-            $item->image3 = $cover;
-        }
 
         $item->save();
 
@@ -168,7 +172,7 @@ class ItemController extends Controller
         $item->status =  $this->sanitize->SanitizeInput($request->status);
 
         if ($item->save()) {
-            
+
             if($item->status ==2)
             $data = [
                 'email' => $request->r_email,
@@ -196,7 +200,7 @@ class ItemController extends Controller
 
                 ];
                 Mail::to($request->r_email)->send(new ItemNotDelivered($data));
-            
+
             }
         return back()->with('success', 'Status Changed!');
     }

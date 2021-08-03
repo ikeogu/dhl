@@ -9,7 +9,7 @@
         </div>
     </div>
 
-   
+
     <div class="container-fluid mt--7">
 
         <div class="row">
@@ -59,13 +59,13 @@
                                         <td>{{ $item->TrackID }}</td>
                                         <td>
                                             <img class="rounded-circle" alt="Item Image"
-                                                src="{{ asset('storage/Item/'.$item->image) }}"
+                                                src="{{ asset('storage/Item/Cover'.$item->image) }}"
                                                 height="50" width="50"
                                                 style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                         </td>
                                         <td>{{ $item->item_name }}</td>
-                                       
-                                        <td>{{ $item->dispatcher->name  }}</td>
+
+                                        <td>{{ $item->dispatcher($item->id)  }}</td>
                                          <td>{{ $item->c_location }}</td>
                                          @if ($item->status == 1)
                                             <td>  <a class="btn btn-sm btn-default text-white">on Queque</a></td>
@@ -79,7 +79,7 @@
                                         <td>
                                              <a class="btn  btn-sm  btn-warning text-white"  data-toggle="modal"
                                                          data-target="#edit_status-{{$key}}">Assign Dispatcher</a>
-                                           
+
 
                                         </td>
                                     </tr>
@@ -90,14 +90,14 @@
                         @else
                            <strong> No Data!</strong>
                         @endif
-                       
+
                     </div>
                 </div>
             </div>
 
         </div>
 
-        
+
     </div>
      @foreach ($items as  $key =>$item)
 
@@ -124,7 +124,7 @@
                                 <div class="col-md-10">
                                     <select class="form-control" name="dis_id">
                                       @foreach ($dispatcher as $d)
-                                        <option value="{{$d->id}}">{{$d->name}} </option>
+                                        <option value="{{$d->id}}">{{$d->firstname}} {$d->lastname}} </option>
                                      @endforeach
                                     </select>
                                 </div>

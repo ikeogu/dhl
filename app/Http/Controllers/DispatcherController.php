@@ -35,7 +35,8 @@ class DispatcherController extends Controller
         }
 
 
-        $dis->name = $this->sanitize->SanitizeInput($request->name);
+        $dis->firstname = $this->sanitize->SanitizeInput($request->firstname);
+        $dis->lastname = $this->sanitize->SanitizeInput($request->lastname);
         $dis->email = $this->sanitize->SanitizeInput($request->email);
         $dis->phone = $this->sanitize->SanitizeInput($request->phone);
         $dis->status = 1;
@@ -50,7 +51,8 @@ class DispatcherController extends Controller
     public function update(Request $request, $id)
     {
         $dis = Dispatcher::find($id);
-        $dis->name = $this->sanitize->SanitizeInput($request->name);
+        $dis->firstname = $this->sanitize->SanitizeInput($request->firstname);
+        $dis->lastname = $this->sanitize->SanitizeInput($request->lastname);
         $dis->email = $this->sanitize->SanitizeInput($request->email);
         $dis->phone = $this->sanitize->SanitizeInput($request->phone);
         $dis->status = 1;
