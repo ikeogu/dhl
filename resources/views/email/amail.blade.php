@@ -137,7 +137,7 @@
                                 <p>Email : <strong>{{$data['email']}}</strong></p>
                                  <p>Password : <strong>{{$data['password']}}</strong></p>
 
-                                <em>please follow the link to login. {{$date['url']}}</em>
+                                <em>please follow the link to login. {{$data['url']}}</em>
                       </td>
                     </tr>
                   </table>
@@ -176,9 +176,7 @@
           <!-- END CENTERED WHITE CONTAINER -->
           </div>
         </td>
-        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp; {{@env('APP_NAME')
-
-        @endenv}} {{data('Y')}}</td>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp; {{date('Y')}}</td>
       </tr>
     </table>
   </body>

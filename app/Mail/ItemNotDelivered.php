@@ -31,8 +31,7 @@ class ItemNotDelivered extends Mailable
     public function build()
     {
         $data  = $this->data;
-        return $this->from('', '')
-            ->view('email.notDelivered')
+        return $this->view('email.notDelivered')
             ->with('data', $data);
     }
 }

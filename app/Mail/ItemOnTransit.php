@@ -31,8 +31,7 @@ class ItemOnTransit extends Mailable
     public function build()
     {
         $data  = $this->data;
-        return $this->from('', '')
-            ->view('email.transit')
+        return $this->view('email.transit')
             ->with('data', $data);
     }
 }

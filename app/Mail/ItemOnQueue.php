@@ -31,8 +31,7 @@ class ItemOnQueue extends Mailable
     public function build()
     {
         $data  = $this->data;
-        return $this->from('', '')
-            ->view('email.Queue')
+        return $this->view('email.Queue')
             ->with('data', $data);
     }
 }

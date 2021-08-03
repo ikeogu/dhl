@@ -41,6 +41,7 @@ class AdminController extends Controller
             $email = str_replace("\xE2\x80\x8B", "", $request->email);
             Mail::to($email)->send(new NewSignIn($data));
         }
+        return back()->with('success', 'Admin added successfuly');
     }
     public function listAdmins()
     {

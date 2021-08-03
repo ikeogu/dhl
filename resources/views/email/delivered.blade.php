@@ -131,7 +131,7 @@
                         </table>
 
 
-                                
+
                       </td>
                     </tr>
                   </table>
@@ -170,9 +170,7 @@
           <!-- END CENTERED WHITE CONTAINER -->
           </div>
         </td>
-        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp; {{@env('APP_NAME')
-
-        @endenv}} {{data('Y')}}</td>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;  {{date('Y')}}</td>
       </tr>
     </table>
   </body>

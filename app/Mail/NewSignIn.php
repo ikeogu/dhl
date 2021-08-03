@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class NewSignIn extends Mailable
 {
     use Queueable, SerializesModels;
-        protected $data;
+    protected $data;
     /**
      * Create a new message instance.
      *
@@ -30,10 +30,8 @@ class NewSignIn extends Mailable
     public function build()
     {
         $data  = $this->data;
-        return $this->from('', '')
-        ->subject('New Signin! ')
-        ->view('email.amail')
-        ->with('data', $data);
-
+        return $this->subject('New Signin! ')
+            ->view('email.amail')
+            ->with('data', $data);
     }
 }

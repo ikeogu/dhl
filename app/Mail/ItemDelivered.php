@@ -31,7 +31,7 @@ class ItemDelivered extends Mailable
     public function build()
     {
         $data  = $this->data;
-        return $this->from('', '')
+        return $this
             ->view('email.delivered')
             ->with('data', $data);
     }
