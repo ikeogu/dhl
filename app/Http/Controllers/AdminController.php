@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\NewSignIn;
+use App\Models\SanitizeInput;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -17,14 +18,23 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->sanitize = new SanitizeInput();
     }
 
     public function createAdmin(Request $request)
     {
+        $validatedData = $request->validate([
+
+            'name' => 'required',
+            'email' => 'required|unique:users,email,except,id',
+
+            'phone' => 'required|unique:users,phone',
+           
+        ]);
         $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
+        $user->name = $this->sanitize->SanitizeInput($request->name);
+        $user->email = $this->sanitize->SanitizeInput($request->email);
+        $user->phone =$this->sanitize->SanitizeInput($request->phone);
         $user->status = 1;
         $pwd = \Str::random(8);
         $user->password = Hash::make($pwd);
