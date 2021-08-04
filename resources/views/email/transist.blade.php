@@ -122,11 +122,11 @@
                   <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                     <tr>
                       <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                        <h3 style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi! {{$data['r_name']}},</h3>
+                        <h3 style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Hi! {{$data['item']->r_name}},</h3>
                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">Your item with trackID {{$data['item']->TrackID}}, is now on transist . </p>
-                        <p>The dispatcher by name {{$data['item']->dispatcher($data['item']->id)}} will get to you shortly.</p>
+                        <p>The dispatcher by name <strong> {{$data['item']->dispatcher($data['item']->id)->firstname}}   {{$data['item']->dispatcher($data['item']->id)->lastname}} </strong> will get to you shortly.</p>
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-                            <p> With delievery date to be {{$data['item']->dod}}</p>
+                            <p> With delivery date to be {{date('d-M-Y',strtotime($data['item']->dod))}}</p>
 
                         </table>
 

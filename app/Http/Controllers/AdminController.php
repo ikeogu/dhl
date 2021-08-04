@@ -25,7 +25,7 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->status = 2;
+        $user->status = 1;
         $pwd = \Str::random(8);
         $user->password = Hash::make($pwd);
         $user->role = $request->role;

@@ -93,7 +93,7 @@
                                         <td>{{ $item->TrackID }}</td>
                                         <td>
                                             <img class="rounded-circle" alt="Item Image"
-                                                src="{{ asset('storage/Item/Cover'.$item->image) }}"
+                                                src="{{ asset('storage/Item/cover/'.$item->image) }}"
                                                 height="50" width="50"
                                                 style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                         </td>

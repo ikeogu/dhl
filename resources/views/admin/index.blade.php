@@ -19,6 +19,10 @@
                 <div class="alert alert-danger">
                     {{ session()->get('danger') }}
                 </div>
+                @elseif (session()->has('warning'))
+                <div class="alert alert-warning">
+                    {{ session()->get('warning') }}
+                </div>
 
             @endif
         </div>
@@ -254,14 +258,14 @@
                                         <td>{{ $item->TrackID }}</td>
                                         <td>
                                             <img class="rounded-circle" alt="Item Image"
-                                                src="{{ asset('storage/Item/Cover'.$item->image) }}"
+                                                src="{{ asset('storage/Item/cover/'.$item->image) }}"
                                                 height="50" width="50"
                                                 style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                         </td>
                                         <td>{{ $item->item_name }}</td>
                                         <td>{{ $item->r_name }}</td>
                                         <td>
-                                            <a href="{{route('dispatched',[$item->dispatcher($item->id)->id])}}">{{ $item->dispatcher($item->id)->firstname }}{{ $item->dispatcher($item->id)->lastname }}</a> </td>
+                                            {{-- <a href="{{route('dispatched',[$item->dispatcher($item->id)->id]) ?? ''}}">{{ $item->dispatcher($item->id)->firstname }}{{ $item->dispatcher($item->id)->lastname }}</a> </td> --}}
                                          <td>{{ $item->c_location }}</td>
                                          @if ($item->status == 1)
                                             <td>  <a class="btn btn-sm btn-default text-white">on Queque</a></td>

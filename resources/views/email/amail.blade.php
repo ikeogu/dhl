@@ -137,7 +137,7 @@
                                 <p>Email : <strong>{{$data['email']}}</strong></p>
                                  <p>Password : <strong>{{$data['password']}}</strong></p>
 
-                                <em>please follow the link to login. {{$data['url']}}</em>
+                                <em>please follow the link to login. <a  href="{{$data['url']}}"> {{$data['url']}}</a></em>
                       </td>
                     </tr>
                   </table>

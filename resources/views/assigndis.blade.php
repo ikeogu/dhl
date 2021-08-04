@@ -59,13 +59,13 @@
                                         <td>{{ $item->TrackID }}</td>
                                         <td>
                                             <img class="rounded-circle" alt="Item Image"
-                                                src="{{ asset('storage/Item/Cover'.$item->image) }}"
+                                                src="{{ asset('storage/Item/cover/'.$item->image) }}"
                                                 height="50" width="50"
                                                 style="box-shadow: 0 1px 8px rgb(0 0 0 / 30%);border: 1px solid skyblue;"></a>
                                         </td>
                                         <td>{{ $item->item_name }}</td>
 
-                                        <td>{{ $item->dispatcher($item->id)  }}</td>
+                                        <td>{{ $item->dispatcher($item->id)->firstname ?? '' }} {{ $item->dispatcher($item->id)->lastname  ?? ''}}</td>
                                          <td>{{ $item->c_location }}</td>
                                          @if ($item->status == 1)
                                             <td>  <a class="btn btn-sm btn-default text-white">on Queque</a></td>
@@ -124,7 +124,7 @@
                                 <div class="col-md-10">
                                     <select class="form-control" name="dis_id">
                                       @foreach ($dispatcher as $d)
-                                        <option value="{{$d->id}}">{{$d->firstname}} {$d->lastname}} </option>
+                                        <option value="{{$d->id}}">{{$d->firstname}} {{$d->lastname}} </option>
                                      @endforeach
                                     </select>
                                 </div>

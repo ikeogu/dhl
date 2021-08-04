@@ -166,7 +166,7 @@
             </div>
         </div>
     </div>
-@foreach ($admins as $keys=> $item)
+@foreach ($admins as $key => $item)
       <!--Delete  Modal -->
     <div class="modal fade" id="exampleModal3-{{ $key }}" tabindex="-1"
         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -183,11 +183,13 @@
                 <div class="modal-body">
                     <h5>Confirm</h5>
                     <p>Are you sure you want to delete?</p>
+                    <form action="{{route('del',[$item->id])}}" method="POST">
+                        @csrf
+                        <input value="_token" name="DELETE" type="hidden">
 
-
-                        <a href="{{route('del',[$item->id])}}"
-                            class="btn btn-primary">Ok</a>
-
+                        <a type="submit"
+                            class="btn btn-success btn-block">confirm</a>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"

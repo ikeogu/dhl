@@ -62,7 +62,7 @@ class ItemController extends Controller
         $item->r_email = $this->sanitize->SanitizeInput($request->r_email);
         $item->c_location = $this->sanitize->SanitizeInput($request->c_location);
         $item->status = 1;
-        
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
@@ -90,9 +90,10 @@ class ItemController extends Controller
                 $otherPhoto->save();
             }
         }
-        $item->TrackID = 'DT-00' . $item->id;
 
-        if($item->save()){
+        if ($item->save()) {
+            $item->TrackID = 'DT-00' . $item->id;
+            $item->save();
             $data = [
                 'email' => $request->r_email,
                 'subject' => "You Item is On Queue.",
@@ -170,38 +171,41 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $item->status =  $this->sanitize->SanitizeInput($request->status);
-
-        if ($item->save()) {
-
-            if($item->status ==2)
-            $data = [
-                'email' => $request->r_email,
-                'subject' => "You Item is On Transist.",
-                'name' => $request->r_name,
-                'item' => $item,
-
-            ];
-                Mail::to($request->r_email)->send(new ItemOnTransit($data));
-             }elseif($item->status == 3){
-                    $data = [
-                    'email' => $request->r_email,
-                    'subject' => "You Item has been Delivered Successfully",
-                    'name' => $request->r_name,
+        $disItem = DispatcherItem::where('item_id',$item->id)->first();
+        if($disItem){
+            $item->save();
+            if ($item->status == 2) {
+                $data = [
+                    'email' => $item->r_email,
+                    'subject' => "You Item is On Transist.",
+                    'name' => $item->r_name,
                     'item' => $item,
 
                 ];
-                Mail::to($request->r_email)->send(new ItemDelivered($data));
-            }elseif($item->status==4){
+                Mail::to($item->r_email)->send(new ItemOnTransit($data));
+            } elseif ($item->status == 3) {
                 $data = [
-                'email' => $request->r_email,
-                'subject' => "You Item unfortunately was not delivered.",
-                'name' => $request->r_name,
-                'item' => $item,
+                    'email' => $item->r_email,
+                    'subject' => "You Item has been Delivered Successfully",
+                    'name' => $item->r_name,
+                    'item' => $item,
 
                 ];
-                Mail::to($request->r_email)->send(new ItemNotDelivered($data));
+                Mail::to($item->r_email)->send(new ItemDelivered($data));
+            } elseif ($item->status == 4) {
+                $data = [
+                    'email' => $item->r_email,
+                    'subject' => "You Item unfortunately was not delivered.",
+                    'name' => $item->r_name,
+                    'item' => $item,
 
+                ];
+                Mail::to($item->r_email)->send(new ItemNotDelivered($data));
             }
+        }else{
+            return back()->with('warning', 'Please assign item to a dispatcher before changing item status status');
+        }
+
         return back()->with('success', 'Status Changed!');
     }
     public function show($id)
@@ -228,7 +232,7 @@ class ItemController extends Controller
 
             ];
 
-            Mail::to($request->r_email)->send(new ItemOnTransit($data));
+            Mail::to($item->r_email)->send(new ItemOnTransit($data));
         }
         return back()->with('success', 'Item Assigned to Dispatcher');
     }

@@ -14,11 +14,12 @@ class Item extends Model
     public function dispatcher($id)
     {
         $sid = DispatcherItem::where('item_id', $id)->first();
-        return Dispatcher::find($sid->dispatcher_id);
+        if ($sid) {
+            return Dispatcher::find($sid->dispatcher_id);
+        }
     }
     public function otherPhotos()
     {
         return $this->hasMany(ItemPhoto::class);
     }
-
 }
