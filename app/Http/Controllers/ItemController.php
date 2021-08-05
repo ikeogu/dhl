@@ -62,6 +62,7 @@ class ItemController extends Controller
         $item->r_email = $this->sanitize->SanitizeInput($request->r_email);
         $item->c_location = $this->sanitize->SanitizeInput($request->c_location);
         $item->status = 1;
+        $cover = '';
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -126,7 +127,7 @@ class ItemController extends Controller
         $item->r_email = $this->sanitize->SanitizeInput($request->r_email);
         $item->c_location = $this->sanitize->SanitizeInput($request->c_location);
         $item->status =  $this->sanitize->SanitizeInput($request->status);
-
+        $cover = '';
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
@@ -161,18 +162,19 @@ class ItemController extends Controller
         return back()->with('success', 'Data updated');
     }
 
-    public function destroy($id)
+    public function desItem($id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::find($id);
         $item->delete();
         return back()->with('success', 'Data  deleted');
     }
+
     public function changeStatus(Request $request, $id)
     {
         $item = Item::findOrFail($id);
         $item->status =  $this->sanitize->SanitizeInput($request->status);
-        $disItem = DispatcherItem::where('item_id',$item->id)->first();
-        if($disItem){
+        $disItem = DispatcherItem::where('item_id', $item->id)->first();
+        if ($disItem) {
             $item->save();
             if ($item->status == 2) {
                 $data = [
@@ -202,7 +204,7 @@ class ItemController extends Controller
                 ];
                 Mail::to($item->r_email)->send(new ItemNotDelivered($data));
             }
-        }else{
+        } else {
             return back()->with('warning', 'Please assign item to a dispatcher before changing item status status');
         }
 

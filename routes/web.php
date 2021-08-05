@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('pudates-item-status/{id}', 'App\Http\Controllers\ItemController@changeStatus')->name('itemStatus');
     Route::get('display-item/{id}', 'App\Http\Controllers\ItemController@show')->name('displayItem');
     Route::get('get-all-items', 'App\Http\Controllers\ItemController@index')->name('allItems');
-    Route::delete('delete-item/{id}', 'App\Http\Controllers\ItemController@destory')->name('destroyItem');
+    Route::delete('delete-item/{id}', 'App\Http\Controllers\ItemController@desItem')->name('destroyItem');
     //  Dispatcher Route
     Route::delete('delete-patcher-dis/{id}', 'App\Http\Controllers\DispatcherController@destory')->name('destroyDis');
     Route::post('store-patcher-dis', 'App\Http\Controllers\DispatcherController@store')->name('storeDis');
@@ -61,5 +61,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('filter-items', 'App\Http\Controllers\ItemController@filterItems')->name('filtItems');
     // Dispatched Items
     Route::get('dispatcher-item/{id}', 'App\Http\Controllers\DispatcherController@dispatched')->name('dispatched');
-    
+
 });

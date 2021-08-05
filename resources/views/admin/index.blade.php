@@ -283,6 +283,9 @@
                                             <a class="btn btn-sm  btn-info text-white"  href="{{route('displayItem',[$item->id])}}">View</a>
                                             <a class="btn btn-sm  btn-primary text-white"  data-toggle="modal"
                                                     data-target="#edit_status-{{$key}}">Update Status</a>
+                                             <a class="btn btn-sm  btn-danger text-white"  data-toggle="modal"
+                                                    data-target="#delete_status-{{$key}}">Delete</a>
+
 
 
                                         </td>
@@ -467,7 +470,7 @@
                 </div>
             </div>
         </div>
-          <div class="modal fade"
+        <div class="modal fade"
             id="edit_status-{{ $key }}"
             aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -513,6 +516,34 @@
 
                             <button type="submit"
                                 class="btn btn-primary btn-block">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Delete Modal --}}
+        <div class="modal fade"
+            id="delete_status-{{ $key }}"
+            aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete Item</h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <strong>Are you sure you want to delete {{$item->item_name}} ?</strong>
+                        <form
+                            action="{{ route('destroyItem', $item->id) }}"
+                            method="POST">
+                            @csrf
+                           <input type="hidden" name="_method" value="DELETE">
+
+                            <button type="submit"
+                                class="btn btn-danger btn-block">Delete</button>
                         </form>
                     </div>
                 </div>
