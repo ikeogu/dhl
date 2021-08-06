@@ -249,7 +249,7 @@
                                                     <a class="dropdown-item"  data-toggle="modal"
                                                      data-target="#exampleModal1-{{$key}}">Edit</a>
                                                     <a class="dropdown-item"  href="{{route('profile.edit2',[$item->id])}}">view</a>
-                                                    <a class="dropdown-item"  href="{{route('destroyDis',[$item->id])}}">Delete</a>
+                                                    <a class="dropdown-item" data-target="#deleteModal3-{{ $key }}" data-toggle="modal">Delete</a>
 
                                                 </div>
                                             </div>
@@ -332,6 +332,38 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="deleteModal3-{{ $key }}" tabindex="-1"
+        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Account
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Confirm</h5>
+                    <p>Are you sure you want to delete?</p>
+
+                    <form action="{{route('destroyDis',[$item->id])}}" method="POST">
+                        @csrf
+                         <input type="hidden" name="_method" value="DELETE">
+
+                        <button type="submit"
+                            class="btn btn-danger btn-block"> Confirm </button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
      @endforeach
 
 @endsection

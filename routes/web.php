@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('get-all-items', 'App\Http\Controllers\ItemController@index')->name('allItems');
     Route::delete('delete-item/{id}', 'App\Http\Controllers\ItemController@desItem')->name('destroyItem');
     //  Dispatcher Route
-    Route::delete('delete-patcher-dis/{id}', 'App\Http\Controllers\DispatcherController@destory')->name('destroyDis');
+    Route::delete('delete-patcher-dis/{id}', 'App\Http\Controllers\DispatcherController@destroyDis')->name('destroyDis');
     Route::post('store-patcher-dis', 'App\Http\Controllers\DispatcherController@store')->name('storeDis');
     Route::put('update-patcher-dis/{id}', 'App\Http\Controllers\DispatcherController@update')->name('updateDis');
     Route::get('all-patcher-dis', 'App\Http\Controllers\DispatcherController@index')->name('allDis');

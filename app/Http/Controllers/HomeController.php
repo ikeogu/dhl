@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\History;
-use App\Models\Loan;
+
+use App\Models\Item;
 use App\Models\User;
-use App\Models\Withdrawal;
-use Illuminate\Support\Facades\Log;
+
 
 class HomeController extends Controller
 {
@@ -27,7 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['admins'] = User::latest()->take(8);
+        $data['admins'] = User::latest()->take(8)->get();
+        $data['items'] = Item::latest()->take(8)->get();
         return view('dashboard')->with($data);
     }
 }

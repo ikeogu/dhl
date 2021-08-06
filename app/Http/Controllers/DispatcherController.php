@@ -41,8 +41,6 @@ class DispatcherController extends Controller
         $dis->phone = $this->sanitize->SanitizeInput($request->phone);
         $dis->status = 1;
         $dis->image = $cover;
-
-
         $dis->save();
 
         return back()->with('success', 'Data inserted');
@@ -68,7 +66,7 @@ class DispatcherController extends Controller
 
         return back()->with('success', 'Data updated');
     }
-    public function destroy($id)
+    public function destroyDis($id)
     {
         $dis = Dispatcher::find($id);
         $dis->delete();

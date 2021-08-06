@@ -185,7 +185,7 @@
                     <p>Are you sure you want to delete?</p>
                     <form action="{{route('del',[$item->id])}}" method="POST">
                         @csrf
-                        <input value="_token" name="DELETE" type="hidden">
+                        <input type="hidden" name="_method" value="DELETE">
 
                         <a type="submit"
                             class="btn btn-success btn-block">confirm</a>
