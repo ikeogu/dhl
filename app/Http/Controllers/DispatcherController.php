@@ -78,7 +78,7 @@ class DispatcherController extends Controller
         $items = DispatcherItem::where('dispatcher_id', $id)->get();
         $ids = [];
         foreach ($items as $i) {
-            array_push($ids, $i->id);
+            array_push($ids, $i->item_id);
         }
         $data['items'] = Item::whereIn('id', $ids)->get();
         $data['dispatcher'] = Dispatcher::find($id);
