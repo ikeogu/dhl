@@ -187,8 +187,8 @@
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
 
-                        <a type="submit"
-                            class="btn btn-success btn-block">confirm</a>
+                        <button type="submit"
+                            class="btn btn-success btn-block">confirm</button>
                     </form>
                 </div>
                 <div class="modal-footer">
