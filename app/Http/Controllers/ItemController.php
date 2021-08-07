@@ -13,6 +13,7 @@ use App\Models\ItemPhoto;
 use Illuminate\Http\Request;
 use App\Models\SanitizeInput;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Node\Stmt\TryCatch;
 
 class ItemController extends Controller
 {
@@ -91,22 +92,30 @@ class ItemController extends Controller
                 $otherPhoto->save();
             }
         }
+        try {
 
-        if ($item->save()) {
-            $item->TrackID = 'DT-00' . $item->id;
-            $item->save();
-            $data = [
-                'email' => $request->r_email,
-                'subject' => "You Item is On Queue.",
-                'name' => $request->r_name,
-                'item' => $item,
+            if ($item->save()) {
+                $item->TrackID = 'DT-00' . $item->id;
+                $item->save();
+                $data = [
+                    'email' => $request->r_email,
+                    'subject' => "You Item is On Queue.",
+                    'name' => $request->r_name,
+                    'item' => $item,
 
-            ];
+                ];
 
-            Mail::to($request->r_email)->send(new ItemOnQueue($data));
+                Mail::to($request->r_email)->send(new ItemOnQueue($data));
+            }
+            return back()->with('success', 'Data Inserted');
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
         }
 
-        return back()->with('success', 'Data Inserted');
+
+
+
     }
     public function update(Request $request, $id)
     {
