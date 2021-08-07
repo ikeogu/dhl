@@ -41,9 +41,10 @@ class ItemController extends Controller
             'owner_address' => 'required|max:300',
             'owner_phone' => 'required|max:11',
 
-            'r_address' => 'required|max:300',
-            'r_phone' => 'required',
-            'r_name' => 'required',
+            'recipient_address' => 'required|max:300',
+            'recipient_phone' => 'required',
+            'recipient_name' => 'required',
+            'recipient_email' => 'required',
 
         ]);
 
@@ -57,10 +58,10 @@ class ItemController extends Controller
         $item->owner_phone = $this->sanitize->SanitizeInput($request->owner_phone);
         $item->doc = $this->sanitize->SanitizeInput($request->doc);
         $item->dod = $this->sanitize->SanitizeInput($request->dod);
-        $item->r_address = $this->sanitize->SanitizeInput($request->r_address);
-        $item->r_phone = $this->sanitize->SanitizeInput($request->r_phone);
-        $item->r_name = $this->sanitize->SanitizeInput($request->r_name);
-        $item->r_email = $this->sanitize->SanitizeInput($request->r_email);
+        $item->r_address = $this->sanitize->SanitizeInput($request->recipient_address);
+        $item->r_phone = $this->sanitize->SanitizeInput($request->recipient_phone);
+        $item->r_name = $this->sanitize->SanitizeInput($request->recipient_name);
+        $item->r_email = $this->sanitize->SanitizeInput($request->recipient_email);
         $item->c_location = $this->sanitize->SanitizeInput($request->c_location);
         $item->status = 1;
         $cover = '';
@@ -112,10 +113,6 @@ class ItemController extends Controller
 
             return $e->getMessage();
         }
-
-
-
-
     }
     public function update(Request $request, $id)
     {

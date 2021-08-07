@@ -93,7 +93,7 @@
                                                     <div class="form-group">
                                                          <label>Item's Name</label>
                                                         <input type="text" placeholder="Item Name"
-                                                            class="form-control form-control-alternative" name="item_name" />
+                                                            class="form-control form-control-alternative" name="item_name" value="{{old('item_name')}}" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -101,7 +101,7 @@
                                                          <label>Item weight in (lbs)</label>
                                                         <input type="text" class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1" placeholder="Item Weight"
-                                                            name="item_weight">
+                                                            name="item_weight" value="{{old('item_weight')}}" >
                                                     </div>
                                                 </div>
 
@@ -111,7 +111,7 @@
                                                     <div class="form-group">
                                                          <label>Service Cost </label>
                                                         <input type="number" placeholder="Service Cost"
-                                                            class="form-control form-control-alternative" name="item_cost" />
+                                                            class="form-control form-control-alternative" name="item_cost" value="{{old('item_cost')}}" >
                                                     </div>
                                                 </div>
 
@@ -121,7 +121,7 @@
                                                     <div class="form-group">
                                                          <label>Owner's Name</label>
                                                         <input type="text" placeholder="Owner's name "
-                                                            class="form-control form-control-alternative" name="owner_name" />
+                                                            class="form-control form-control-alternative" name="owner_name" value="{{old('owner_name')}}" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -129,7 +129,7 @@
                                                          <label>Owner's Email</label>
                                                         <input type="email" class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1"
-                                                            placeholder="Owner Email" name="owner_email">
+                                                            placeholder="Owner Email" name="owner_email" value="{{old('owner_email')}}" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +138,7 @@
                                                     <div class="form-group">
                                                          <label>Owner's Phone</label>
                                                         <input type="tel" placeholder="Owner's phone "
-                                                            class="form-control form-control-alternative" name="owner_phone" />
+                                                            class="form-control form-control-alternative" name="owner_phone" value="{{old('owner_phone')}}" >
                                                     </div>
                                                 </div>
 
@@ -149,7 +149,7 @@
                                                         <label>Owner's Address...</label>
                                                         <textarea  class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1" rows="4" cols="7"
-                                                                name="owner_address" placeholder="No 2 akiri road , igbokwu Anambra"></textarea>
+                                                                name="owner_address" placeholder="No 2 akiri road , igbokwu Anambra" > {{old('owner_address')}}</textarea>
                                                     </div>
                                                  </div>
                                             </div>
@@ -158,7 +158,7 @@
                                                     <div class="form-group">
                                                          <label>Date of collection</label>
                                                         <input type="date" placeholder="Date of creation "
-                                                            class="form-control form-control-alternative" name="doc" type="date">
+                                                            class="form-control form-control-alternative" name="doc" type="date" value="{{old('doc')}}" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -166,7 +166,7 @@
                                                         <label>Expected Date of Delivery</label>
                                                         <input class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1"
-                                                             name="dod" placeholder="Date Of Delivery" type="date">
+                                                             name="dod" placeholder="Date Of Delivery" type="date" value="{{old('dod')}}" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +175,7 @@
                                                     <div class="form-group">
                                                         <label>Recipient's Name</label>
                                                         <input type="text" placeholder="Recipient Name "
-                                                            class="form-control form-control-alternative" name="r_name" />
+                                                            class="form-control form-control-alternative" name="recipient_name" value="{{old('recipient_name')}}"  />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -183,7 +183,7 @@
                                                         <label>Recipient's Email</label>
                                                         <input class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1"
-                                                             name="r_email" placeholder="Recipient Email">
+                                                             name="recipient_email" placeholder="Recipient Email" value="{{old('recipient_email')}}" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,7 +192,7 @@
                                                     <div class="form-group">
                                                         <label>Recipient's Phone</label>
                                                         <input type="tel" placeholder="Recipient Phone"
-                                                            class="form-control form-control-alternative" name="r_phone" />
+                                                            class="form-control form-control-alternative" name="recipient_phone" value="{{old('recipent_phone')}}" >
                                                     </div>
                                                 </div>
 
@@ -203,7 +203,8 @@
                                                         <label>Recipient's Address</label>
                                                         <textarea  class="form-control form-control-alternative"
                                                             id="exampleFormControlInput1" rows="5" cols="7"
-                                                             name="r_address" placeholder="No 2 achara Layout Enugu State"></textarea>
+                                                             name="recipient_address" placeholder="No 2 achara Layout Enugu State">
+                                                            {{old('recipient_address')}}" </textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,7 +213,7 @@
                                                     <div class="form-group">
                                                         <label>Item Cover photo</label>
                                                         <input type="file"
-                                                            class="form-control form-control-alternative" name="image">
+                                                            class="form-control form-control-alternative" name="image" value="{{old('image')}}" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -221,7 +222,7 @@
                                                     <div class="form-group">
                                                         <label>Item Photo</label>
                                                         <input type="file"
-                                                            class="form-control form-control-alternative" name="images" multiple>
+                                                            class="form-control form-control-alternative" name="images" multiple value="{{old('images')}}" >
                                                     </div>
                                                 </div>
                                             </div>
