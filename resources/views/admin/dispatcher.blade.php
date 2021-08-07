@@ -139,7 +139,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="{{ route('storeDis') }}">
+                                        <form method="post" action="{{ route('storeDis') }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -176,8 +176,8 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <input type="file" placeholder="Image "
-                                                            class="form-control form-control-alternative" name="image" />
+                                                        <input type="file"
+                                                            class="form-control form-control-alternative" name="image">
                                                     </div>
                                                 </div>
 

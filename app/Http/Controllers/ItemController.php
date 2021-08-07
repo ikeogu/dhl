@@ -130,7 +130,7 @@ class ItemController extends Controller
         $cover = '';
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
+            $fileName = '_image' . time() . '.' . $file->extension();
             $request->file('image')->storeAs('public/Item/cover', $fileName);
             $cover = $fileName;
         }

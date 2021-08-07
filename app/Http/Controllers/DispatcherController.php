@@ -26,20 +26,21 @@ class DispatcherController extends Controller
     public function store(Request $request)
     {
         $dis = new Dispatcher();
-        $cover = '';
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
-            $request->file('image')->storeAs('public/Dispatcher', $fileName);
-            $cover = $fileName;
-        }
-
-
         $dis->firstname = $this->sanitize->SanitizeInput($request->firstname);
         $dis->lastname = $this->sanitize->SanitizeInput($request->lastname);
         $dis->email = $this->sanitize->SanitizeInput($request->email);
         $dis->phone = $this->sanitize->SanitizeInput($request->phone);
         $dis->status = 1;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = '_image' . time() . '.' . $file->extension();
+            $request->file('image')->storeAs('public/Dispatcher', $fileName);
+            $cover = $fileName;
+        }else{
+            $cover = 'No Image';
+        }
+
         $dis->image = $cover;
         $dis->save();
 
@@ -54,11 +55,15 @@ class DispatcherController extends Controller
         $dis->email = $this->sanitize->SanitizeInput($request->email);
         $dis->phone = $this->sanitize->SanitizeInput($request->phone);
         $dis->status = 1;
+
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = str_replace(' ', '_', strtolower($request->template_name)) . '_image' . time() . '.' . $file->extension();
+            $fileName = '_image' . time() . '.' . $file->extension();
             $request->file('image')->storeAs('public/Dispatcher', $fileName);
             $cover = $fileName;
+        }else {
+            $cover = "No Image";
         }
 
         $dis->image = $cover;
