@@ -99,14 +99,14 @@ class ItemController extends Controller
                 $item->TrackID = 'DT-00' . $item->id;
                 $item->save();
                 $data = [
-                    'email' => $request->r_email,
+                    'email' => $request->recipient_email,
                     'subject' => "You Item is On Queue.",
-                    'name' => $request->r_name,
+                    'name' => $request->recipient_name,
                     'item' => $item,
 
                 ];
 
-                Mail::to($request->r_email)->send(new ItemOnQueue($data));
+                Mail::to($item->r_email)->send(new ItemOnQueue($data));
             }
             return back()->with('success', 'Data Inserted');
         } catch (\Exception $e) {

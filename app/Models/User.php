@@ -22,11 +22,10 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'can_pay',
-        'salary',
+
         'status',
         'isAdmin',
-        'keep_track'
+        
 
     ];
 

@@ -28,8 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
     Route::get('profile-dispatcher/{id}', ['as' => 'profile.edit2', 'uses' => 'App\Http\Controllers\ProfileController@showDis']);
-    Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-    Route::put('profile/{id}', ['as' => 'profile.update-d', 'uses' => 'App\Http\Controllers\ProfileController@updateD']);
+    Route::put('update-my-profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+    Route::put('profile-update-dispatcher', ['as' => 'profile.update-d', 'uses' => 'App\Http\Controllers\ProfileController@updateD']);
 
 
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);

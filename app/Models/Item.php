@@ -14,7 +14,7 @@ class Item extends Model
     public function dispatcher($id)
     {
         $sid = DispatcherItem::where('item_id', $id)->first();
-        if ($sid) {
+        if (!empty($sid)) {
             return Dispatcher::find($sid->dispatcher_id);
         }
     }

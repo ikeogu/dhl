@@ -272,7 +272,7 @@
                                         <td>{{ $item->item_name }}</td>
                                         <td>{{ $item->r_name }}</td>
                                         <td>
-                                            {{-- <a href="{{route('dispatched',[$item->dispatcher($item->id)->id]) ?? ''}}">{{ $item->dispatcher($item->id)->firstname }}{{ $item->dispatcher($item->id)->lastname }}</a> </td> --}}
+                                             <a href="{{route('dispatched',[$item->dispatcher($item->id)->id])}}">{{ $item->dispatcher($item->id)->firstname }}{{ $item->dispatcher($item->id)->lastname }}</a> </td>
                                          <td>{{ $item->c_location }}</td>
                                          @if ($item->status == 1)
                                             <td>  <a class="btn btn-sm btn-default text-white">on Queque</a></td>
